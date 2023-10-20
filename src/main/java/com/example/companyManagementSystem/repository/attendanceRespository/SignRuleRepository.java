@@ -1,0 +1,24 @@
+package com.example.companyManagementSystem.repository.attendanceRepository;
+
+import com.example.companyManagementSystem.entity.attendance.SignRule;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface SignRuleRepository extends JpaRepository<SignRule, Long> {
+
+    @Query(value = "select * from sign_rules r " +
+            "left join sign_personals sp on sp.sign_rule_id = r.sign_rule_id " +
+            "where personal_id = ?1 ", nativeQuery = true)
+    List<SignRule> findSignRulesBySignPersonal(long personalId);
+
+    @Query(value = "select * from sign_rules r " +
+            "left join sign_personals sp on sp.sign_rule_id = r.sign_rule_id " +
+            "left join personals p on sp.personal_id = p.personal_id " +
+            "left join departments d on d.department_id = p.department " +
+            "where d.department_id = ?1", nativeQuery = true)
+    List<SignRule> findSignRulesByDepartment(long departmentId);
+}

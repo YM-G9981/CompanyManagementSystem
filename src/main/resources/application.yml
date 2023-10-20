@@ -1,0 +1,50 @@
+filePath:
+    announcementAppendixFile: /static/newsAndAnnouncementAppendixFiles/announcementAppendixFile
+    importDepartmentsTemple: /static/importFileTemplate/DepartmentImportTemplate.xlsx
+    importPersonalsTemple: /static/importFileTemplate/PersonalImportTemplate.xlsx
+    importPositionsTemple: /static/importFileTemplate/PositionImportTemplate.xlsx
+    importSignsTemple: /static/importFileTemplate/SignsImportTemplate.xlsx
+    innerMailFile: /static/mailFiles/innerMailFiles
+    newsAppendixFile: /static/newsAndAnnouncementAppendixFiles/newsAppendixFile
+    outerMailFile: /static/mailFiles/outerMailFiles
+    signPicture: /static/signFiles/signPictures
+logging:
+    config: classpath:log4j.properties
+    level:
+        com:
+            customer: info
+        org:
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: trace
+server:
+    port: 8080
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: 123456
+        url: jdbc:mysql://127.0.0.1:3306/company_management_system
+        username: root
+    jackson:
+        serialization:
+            fail-on-empty-beans: false
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                format_sql: true
+        show-sql: true
+    mail:
+        host: smtp.163.com
+        password: 7931/*-+
+        username: abcde7963@163.com
+    mvc:
+        static-path-pattern: /static/**
+    servlet:
+        multipart:
+            max-file-size: 50MB
+            max-request-size: 50MB
